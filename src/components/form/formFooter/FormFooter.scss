@@ -1,0 +1,22 @@
+.form-footer {
+  margin-top: auto;
+  background-color: var(--color-neutral-white);
+  padding: 16px;
+  font-size: 0.84375rem;
+
+  & > .back-btn {
+    color: var(--color-neutral-cool-gray);
+    font-weight: 500;
+  }
+
+  & > .next-btn {
+    background-color: var(--color-primary-marine-blue);
+    color: var(--color-neutral-light-gray);
+
+    padding: 12px 16px;
+    border-radius: 4px;
+
+    font-weight: 700;
+    letter-spacing: 0.005rem;
+  }
+}

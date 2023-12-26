@@ -1,0 +1,36 @@
+.grid {
+  display: grid;
+}
+
+.flex,
+.flex-align-start,
+.stack,
+.stack-sb,
+.sb,
+.vc,
+.hvc {
+  display: flex;
+}
+
+.stack,
+.stack-sb {
+  flex-direction: column;
+}
+
+.hvc {
+  justify-content: center;
+}
+
+.sb,
+.stack-sb {
+  justify-content: space-between;
+}
+
+.flex-align-start {
+  align-items: start;
+}
+
+.vc,
+.hvc {
+  align-items: center;
+}

@@ -1,0 +1,14 @@
+main {
+  position: absolute;
+  inset: 0;
+
+  > form {
+    margin-inline: 16px;
+    margin-bottom: 24px;
+    padding-top: 32px;
+    padding-inline: 24px;
+
+    border-radius: 10px;
+    background-color: var(--color-neutral-white);
+  }
+}
