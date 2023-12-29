@@ -5,7 +5,7 @@ import FormFooter from "./formFooter/FormFooter";
 import StepDisplay from "./stepDisplay/StepDisplay";
 
 import AddOns from "./subForms/AddOns";
-import PersonalInfo from "./subForms/PersonalInfo";
+import PersonalInfo from "./subForms/personalInfoForm/PersonalInfo";
 import PlanSelection from "./subForms/planSelectionForm/PlanSelection";
 import Summary from "./subForms/Summary";
 
