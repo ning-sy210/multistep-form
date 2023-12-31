@@ -1,4 +1,4 @@
-import AddOns from "./subForms/AddOns";
+import AddOns from "./subForms/addOnForm/AddOns";
 import Summary from "./subForms/Summary";
 import PersonalInfo from "./subForms/personalInfoForm/PersonalInfo";
 import PlanSelection from "./subForms/planSelectionForm/PlanSelection";
