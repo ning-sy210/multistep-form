@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 
 import FormDesc from "../formDesc/FormDesc";
 import { paymentPlanAtom, selectedPlanAtom } from "./PlanSelection.atoms";
-import { PaymentPlan, Plan } from "./PlanSelection.constants";
+import { PaymentPlan } from "./PlanSelection.constants";
 
 import AdvancedIcon from "/images/icon-advanced.svg";
 import ArcadeIcon from "/images/icon-arcade.svg";
@@ -10,29 +10,32 @@ import ProIcon from "/images/icon-pro.svg";
 
 import "./PlanSelection.scss";
 
-type PlanOptionProps = {
-  icon: string;
-  label: Plan;
+export type PlanOptionCoreProps = {
+  label: string;
   costPerMonth: number;
   freeMonthsInYearPlan?: number;
 };
 
+type PlanOptionProps = {
+  icon: string;
+} & PlanOptionCoreProps;
+
 const PlanOptions: PlanOptionProps[] = [
   {
     icon: ArcadeIcon,
-    label: Plan.ARCADE,
+    label: "Arcade",
     costPerMonth: 9,
     freeMonthsInYearPlan: 2,
   },
   {
     icon: AdvancedIcon,
-    label: Plan.ADVANCED,
+    label: "Advanced",
     costPerMonth: 12,
     freeMonthsInYearPlan: 2,
   },
   {
     icon: ProIcon,
-    label: Plan.PRO,
+    label: "Pro",
     costPerMonth: 15,
     freeMonthsInYearPlan: 2,
   },
@@ -71,7 +74,7 @@ const PlanOption = ({
 }: PlanOptionProps) => {
   const [paymentPlan] = useAtom(paymentPlanAtom);
   const [selectedPlan, setSelectedPlan] = useAtom(selectedPlanAtom); // TODO: form validation for empty selection
-  const selectedClass = selectedPlan === label ? "selected" : "";
+  const selectedClass = selectedPlan?.label === label ? "selected" : "";
 
   const costLabel =
     paymentPlan === PaymentPlan.MONTHLY
@@ -80,7 +83,9 @@ const PlanOption = ({
 
   return (
     <section
-      onClick={() => setSelectedPlan(label)}
+      onClick={() =>
+        setSelectedPlan({ label, costPerMonth, freeMonthsInYearPlan })
+      }
       className={`flex-align-start plan-option ${selectedClass}`}
     >
       <img src={icon} title={`${label} icon`} alt={`${label} icon`} />

@@ -1,0 +1,57 @@
+.summary-form > .main {
+  font-size: 0.8875rem;
+  color: var(--color-neutral-cool-gray);
+  $padding-inline: 16px;
+
+  .cost-breakdown {
+    padding: 19px $padding-inline 18px;
+    border-radius: 4px;
+    background-color: var(--color-neutral-alabaster);
+
+    .selected-plan,
+    .plan-cost,
+    .add-on-cost {
+      color: var(--color-primary-marine-blue);
+    }
+
+    .selected-plan {
+      font-weight: var(--font-medium);
+    }
+
+    .plan-cost {
+      position: relative;
+      top: 3px;
+      font-weight: var(--font-bold);
+    }
+
+    .change-btn {
+      margin-top: 3px;
+      text-decoration: underline;
+    }
+
+    .divider {
+      margin-block: 13px 15px;
+      height: 1px;
+      background-color: var(--color-neutral-light-gray);
+
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+
+  .total-cost-ctn {
+    margin-top: 24px;
+    padding-inline: $padding-inline;
+
+    .total-cost {
+      font-size: 16px;
+      font-weight: var(--font-bold);
+      color: var(--color-primary-purplish-blue);
+    }
+  }
+
+  .add-on:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
+}

@@ -7,6 +7,7 @@
 .stack,
 .stack-sb,
 .sb,
+.vcsb,
 .vc,
 .hvc {
   display: flex;
@@ -22,6 +23,7 @@
 }
 
 .sb,
+.vcsb,
 .stack-sb {
   justify-content: space-between;
 }
@@ -31,6 +33,7 @@
 }
 
 .vc,
+.vcsb,
 .hvc {
   align-items: center;
 }

@@ -5,52 +5,25 @@ import { PrimitiveAtom, useAtom } from "jotai";
 import FormDesc from "../formDesc/FormDesc";
 
 import { paymentPlanAtom } from "../planSelectionForm/PlanSelection.atoms";
-import {
-  customizableProfileAtom,
-  largerStorageAtom,
-  onlineServiceAtom,
-} from "./AddOns.atoms";
-
 import { PaymentPlan } from "../planSelectionForm/PlanSelection.constants";
-import { AddOn } from "./AddOns.constants";
+import { AddOn, addOnOptions } from "./AddOns.constants";
 
 import "./AddOns.scss";
 
-type AddOnOptionProps = {
+export type AddOnCoreProps = {
   label: AddOn;
-  desc: string;
   costPerMonth: number;
   freeMonthsInYearPlan?: number;
+};
+
+export type AddOnOptionProps = AddOnCoreProps & {
+  desc: string;
   atom: PrimitiveAtom<boolean>;
 };
 
-const addOnOptions: AddOnOptionProps[] = [
-  {
-    label: AddOn.ONLINE_SERVICE,
-    desc: "Access to multiplayer games",
-    costPerMonth: 1,
-    freeMonthsInYearPlan: 2,
-    atom: onlineServiceAtom,
-  },
-  {
-    label: AddOn.LARGER_STORAGE,
-    desc: "Extra 1TB of cloud save",
-    costPerMonth: 2,
-    freeMonthsInYearPlan: 2,
-    atom: largerStorageAtom,
-  },
-  {
-    label: AddOn.CUSTOMIZABLE_PROFILE,
-    desc: "Custom theme on your profile",
-    costPerMonth: 2,
-    freeMonthsInYearPlan: 2,
-    atom: customizableProfileAtom,
-  },
-];
-
 const AddOns = () => {
   return (
-    <form>
+    <form className="add-on-form">
       <FormDesc
         header="Pick add-ons"
         description="Add-ons help enhance your gaming experience."
@@ -79,6 +52,7 @@ const AddOnOption = ({
 }: AddOnOptionProps) => {
   const [selected, setSelected] = useAtom(atom);
   const [paymentPlan] = useAtom(paymentPlanAtom);
+
   const costLabel =
     paymentPlan === PaymentPlan.MONTHLY
       ? `${costPerMonth}/mo`
