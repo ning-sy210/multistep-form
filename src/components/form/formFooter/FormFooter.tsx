@@ -7,11 +7,11 @@ import "./FormFooter.scss";
 const FormFooter = () => {
   const [step, setStep] = useAtom(stepAtom);
   const setHasCompleted = useSetAtom(hasCompletedAtom);
-  const lastStep = steps.length - 1;
+  const lastStep = steps.length;
 
   return (
     <div className="flex form-footer">
-      {step > 0 && (
+      {step > 1 && (
         <button
           onClick={() => setStep((prev) => prev - 1)}
           type="button"

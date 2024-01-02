@@ -12,15 +12,18 @@ const StepDisplay = ({ numberOfSteps }: StepDisplayProps) => {
 
   return (
     <div className="flex step-display">
-      {Array.from(Array(numberOfSteps)).map((_, i) => (
-        <div
-          key={i}
-          onClick={() => setStep(i)}
-          className={`hvc step-bubble ${i === step ? "selected" : ""}`}
-        >
-          {i + 1}
-        </div>
-      ))}
+      {Array.from(Array(numberOfSteps)).map((_, i) => {
+        const index = i + 1;
+        return (
+          <div
+            key={index}
+            onClick={() => setStep(index)}
+            className={`hvc step-bubble ${index === step ? "selected" : ""}`}
+          >
+            {index}
+          </div>
+        );
+      })}
     </div>
   );
 };

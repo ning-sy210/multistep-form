@@ -21,7 +21,7 @@ const Form = () => {
         <SubscriptionConfirmation />
       ) : (
         <>
-          {steps[step]}
+          {steps[step - 1]}
           <FormFooter />
         </>
       )}
