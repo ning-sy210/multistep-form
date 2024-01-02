@@ -1,8 +1,10 @@
 import { useAtom, useAtomValue } from "jotai";
 
 import FormDesc from "../formDesc/FormDesc";
-import { paymentPlanAtom, selectedPlanAtom } from "./PlanSelection.atoms";
-import { PaymentPlan } from "./PlanSelection.constants";
+
+import { getItemCost, getPerMonthOrYearText } from "../../Form.functions";
+import { paymentBasisAtom, selectedPlanAtom } from "./PlanSelection.atoms";
+import { PaymentBasis } from "./PlanSelection.constants";
 
 import AdvancedIcon from "/images/icon-advanced.svg";
 import ArcadeIcon from "/images/icon-arcade.svg";
@@ -49,19 +51,21 @@ const PlanSelection = () => {
         description="You have the option of monthly or yearly billing."
       />
 
-      <div className="grid options-ctn">
-        {PlanOptions.map((option) => (
-          <PlanOption
-            key={option.label}
-            icon={option.icon}
-            label={option.label}
-            costPerMonth={option.costPerMonth}
-            freeMonthsInYearPlan={option.freeMonthsInYearPlan}
-          />
-        ))}
-      </div>
+      {PlanOptions.map((option) => (
+        <PlanOption
+          key={option.label}
+          icon={option.icon}
+          label={option.label}
+          costPerMonth={option.costPerMonth}
+          freeMonthsInYearPlan={option.freeMonthsInYearPlan}
+        />
+      ))}
 
-      <PaymentPlanToggle />
+      <div className="hvc payment-basis-selector">
+        <p className="month-option-label">Monthly</p>
+        <PlanToggle />
+        <p className="year-option-label">Yearly</p>
+      </div>
     </form>
   );
 };
@@ -72,28 +76,33 @@ const PlanOption = ({
   costPerMonth,
   freeMonthsInYearPlan = 0,
 }: PlanOptionProps) => {
-  const paymentPlan = useAtomValue(paymentPlanAtom);
+  const paymentBasis = useAtomValue(paymentBasisAtom);
   const [selectedPlan, setSelectedPlan] = useAtom(selectedPlanAtom); // TODO: form validation for empty selection
-  const selectedClass = selectedPlan?.label === label ? "selected" : "";
+  const planCost = getItemCost(
+    costPerMonth,
+    paymentBasis,
+    freeMonthsInYearPlan
+  );
 
-  const costLabel =
-    paymentPlan === PaymentPlan.MONTHLY
-      ? `$${costPerMonth}/mo`
-      : `$${costPerMonth * (12 - freeMonthsInYearPlan)}/yr`;
+  const selectedClass = selectedPlan?.label === label ? "selected" : "";
+  const planCostText = `$${planCost}${getPerMonthOrYearText(paymentBasis)}`;
+
+  function onClick() {
+    if (selectedClass) return;
+    setSelectedPlan({ label, costPerMonth, freeMonthsInYearPlan });
+  }
 
   return (
     <section
-      onClick={() =>
-        setSelectedPlan({ label, costPerMonth, freeMonthsInYearPlan })
-      }
+      onClick={onClick}
       className={`flex-align-start plan-option ${selectedClass}`}
     >
       <img src={icon} title={`${label} icon`} alt={`${label} icon`} />
       <div className="grid text-ctn">
         <h2>{label}</h2>
-        <p className="cost-label">{costLabel}</p>
+        <p className="plan-cost">{planCostText}</p>
 
-        {paymentPlan === PaymentPlan.YEARLY && (
+        {paymentBasis === PaymentBasis.YEARLY && (
           <p className="free-months-label">
             {freeMonthsInYearPlan} months free
           </p>
@@ -103,27 +112,25 @@ const PlanOption = ({
   );
 };
 
-const PaymentPlanToggle = () => {
-  const [paymentPlan, setPaymentPlan] = useAtom(paymentPlanAtom);
+const PlanToggle = () => {
+  const [paymentPlan, setPaymentPlan] = useAtom(paymentBasisAtom);
 
   function togglePaymentPlan() {
-    if (paymentPlan === PaymentPlan.MONTHLY) {
-      setPaymentPlan(PaymentPlan.YEARLY);
+    if (paymentPlan === PaymentBasis.MONTHLY) {
+      setPaymentPlan(PaymentBasis.YEARLY);
     } else {
-      setPaymentPlan(PaymentPlan.MONTHLY);
+      setPaymentPlan(PaymentBasis.MONTHLY);
     }
   }
 
   return (
-    <div className="hvc payment-plan-selector">
-      <p className="month-option-label">Monthly</p>
-
-      {/* TODO: consider changing to <button> / <input> */}
-      <div onClick={togglePaymentPlan} className="vc payment-plan-toggle">
-        <div className={`toggle-btn ${paymentPlan.toLowerCase()}`}></div>
-      </div>
-      <p className="year-option-label">Yearly</p>
-    </div>
+    <button
+      onClick={togglePaymentPlan}
+      type="button"
+      className="vc payment-basis-toggle"
+    >
+      <span className={`toggle-btn ${paymentPlan.toLowerCase()}`}></span>
+    </button>
   );
 };
 

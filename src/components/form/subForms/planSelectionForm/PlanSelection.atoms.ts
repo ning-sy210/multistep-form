@@ -1,15 +1,16 @@
 import { atom } from "jotai";
 import { PlanOptionCoreProps } from "./PlanSelection";
-import { PaymentPlan } from "./PlanSelection.constants";
+import { PaymentBasis } from "./PlanSelection.constants";
+import { getItemCost } from "../../Form.functions";
 
-export const paymentPlanAtom = atom<PaymentPlan>(PaymentPlan.MONTHLY);
+export const paymentBasisAtom = atom<PaymentBasis>(PaymentBasis.MONTHLY);
 export const selectedPlanAtom = atom<PlanOptionCoreProps | null>(null);
 
-export const planCostReadAtom = atom((get) => {
-  const planCostPerMonth = get(selectedPlanAtom)?.costPerMonth ?? 0;
-  const freeMonthsInYearPlan = get(selectedPlanAtom)?.freeMonthsInYearPlan ?? 0;
+export const selectedPlanCostReadAtom = atom((get) => {
+  const selectedPlan = get(selectedPlanAtom);
+  if (selectedPlan === null) return 0;
 
-  return get(paymentPlanAtom) === PaymentPlan.MONTHLY
-    ? planCostPerMonth
-    : planCostPerMonth * (12 - freeMonthsInYearPlan);
+  const costPerMonth = selectedPlan.costPerMonth;
+  const freeMonthsInYearPlan = selectedPlan.freeMonthsInYearPlan;
+  return getItemCost(costPerMonth, get(paymentBasisAtom), freeMonthsInYearPlan);
 });

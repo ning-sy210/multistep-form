@@ -4,8 +4,8 @@ import { PrimitiveAtom, useAtom, useAtomValue } from "jotai";
 
 import FormDesc from "../formDesc/FormDesc";
 
-import { paymentPlanAtom } from "../planSelectionForm/PlanSelection.atoms";
-import { PaymentPlan } from "../planSelectionForm/PlanSelection.constants";
+import { paymentBasisAtom } from "../planSelectionForm/PlanSelection.atoms";
+import { PaymentBasis } from "../planSelectionForm/PlanSelection.constants";
 import { AddOn, addOnOptions } from "./AddOns.constants";
 
 import "./AddOns.scss";
@@ -51,10 +51,10 @@ const AddOnOption = ({
   atom,
 }: AddOnOptionProps) => {
   const [selected, setSelected] = useAtom(atom);
-  const paymentPlan = useAtomValue(paymentPlanAtom);
+  const paymentPlan = useAtomValue(paymentBasisAtom);
 
   const costLabel =
-    paymentPlan === PaymentPlan.MONTHLY
+    paymentPlan === PaymentBasis.MONTHLY
       ? `${costPerMonth}/mo`
       : `${costPerMonth * (12 - freeMonthsInYearPlan)}/yr`;
 

@@ -1,4 +1,4 @@
-export enum PaymentPlan {
+export enum PaymentBasis {
   MONTHLY = "Monthly",
   YEARLY = "Yearly",
 }

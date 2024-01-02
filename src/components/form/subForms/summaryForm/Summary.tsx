@@ -5,33 +5,33 @@ import FormDesc from "../formDesc/FormDesc";
 import { stepAtom } from "../../Form.atoms";
 import { selectedAddOnsReadAtom } from "../addOnForm/AddOns.atoms";
 import {
-  planCostReadAtom,
-  paymentPlanAtom,
+  selectedPlanCostReadAtom,
+  paymentBasisAtom,
   selectedPlanAtom,
 } from "../planSelectionForm/PlanSelection.atoms";
-import { PaymentPlan } from "../planSelectionForm/PlanSelection.constants";
+import { PaymentBasis } from "../planSelectionForm/PlanSelection.constants";
 
 import "./Summary.scss";
 
 const Summary = () => {
   const setStep = useSetAtom(stepAtom);
 
-  const paymentPlan = useAtomValue(paymentPlanAtom);
+  const paymentPlan = useAtomValue(paymentBasisAtom);
   const selectedPlan = useAtomValue(selectedPlanAtom);
   const selectedAddOns = useAtomValue(selectedAddOnsReadAtom);
 
-  const planCost = useAtomValue(planCostReadAtom);
+  const planCost = useAtomValue(selectedPlanCostReadAtom);
   const addOnsCost = selectedAddOns.reduce((acc, curr) => {
-    return paymentPlan === PaymentPlan.MONTHLY
+    return paymentPlan === PaymentBasis.MONTHLY
       ? acc + curr.costPerMonth
       : acc + curr.costPerMonth * (12 - (curr.freeMonthsInYearPlan ?? 0));
   }, 0);
   const totalCost = planCost + addOnsCost;
 
   const perMonthOrYearTextTruncated =
-    paymentPlan === PaymentPlan.MONTHLY ? "/mo" : "/yr";
+    paymentPlan === PaymentBasis.MONTHLY ? "/mo" : "/yr";
   const perMonthOrYearText =
-    paymentPlan === PaymentPlan.MONTHLY ? "per month" : "per year";
+    paymentPlan === PaymentBasis.MONTHLY ? "per month" : "per year";
 
   return (
     <section className="form summary-form">
@@ -90,10 +90,10 @@ const AddOn = ({
   costPerMonth,
   freeMonthsInYearPlan = 0,
 }: AddOnCoreProps) => {
-  const paymentPlan = useAtomValue(paymentPlanAtom);
+  const paymentPlan = useAtomValue(paymentBasisAtom);
 
   const cost =
-    paymentPlan === PaymentPlan.MONTHLY
+    paymentPlan === PaymentBasis.MONTHLY
       ? `${costPerMonth}/mo`
       : `${costPerMonth * (12 - freeMonthsInYearPlan)}/yr`;
 
