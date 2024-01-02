@@ -1,5 +1,4 @@
 import SubscriptionConfirmationIcon from "/images/icon-thank-you.svg";
-
 import "./SubscriptionConfirmation.scss";
 
 const SubscriptionConfirmation = () => {
