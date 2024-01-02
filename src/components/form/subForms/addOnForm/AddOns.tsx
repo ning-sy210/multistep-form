@@ -23,7 +23,7 @@ export type AddOnOptionProps = AddOnCoreProps & {
 
 const AddOns = () => {
   return (
-    <form className="add-on-form">
+    <form className="form add-on-form">
       <FormDesc
         header="Pick add-ons"
         description="Add-ons help enhance your gaming experience."

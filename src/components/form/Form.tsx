@@ -1,20 +1,30 @@
-import { useAtom } from "jotai";
-import { stepAtom } from "./Form.atoms";
+import { useAtom, useAtomValue } from "jotai";
 
-import { steps } from "./Form.constants";
 import FormFooter from "./formFooter/FormFooter";
 import StepDisplay from "./stepDisplay/StepDisplay";
+import SubscriptionConfirmation from "./subscriptionConfirmation/SubscriptionConfirmation";
+
+import { hasCompletedAtom, stepAtom } from "./Form.atoms";
+import { steps } from "./Form.constants";
 
 import "./Form.scss";
 
 const Form = () => {
   const [step] = useAtom(stepAtom);
+  const hasCompleted = useAtomValue(hasCompletedAtom);
 
   return (
     <main className="stack">
       <StepDisplay numberOfSteps={steps.length} />
-      {steps[step]}
-      <FormFooter />
+
+      {hasCompleted ? (
+        <SubscriptionConfirmation />
+      ) : (
+        <>
+          {steps[step]}
+          <FormFooter />
+        </>
+      )}
     </main>
   );
 };

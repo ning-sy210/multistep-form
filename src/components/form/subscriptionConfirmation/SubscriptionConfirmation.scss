@@ -1,0 +1,22 @@
+.subscription-confirmation-form {
+  min-height: 400px;
+  text-align: center;
+
+  img {
+    $length: 56px;
+    width: $length;
+    height: $length;
+  }
+
+  h1 {
+    margin-top: 24px;
+    font-size: 24px;
+    color: var(--color-primary-marine-blue);
+  }
+
+  p {
+    margin-top: 10px;
+    color: var(--color-neutral-cool-gray);
+    line-height: 1.55rem;
+  }
+}

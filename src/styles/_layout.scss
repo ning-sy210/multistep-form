@@ -9,16 +9,19 @@
 .sb,
 .vcsb,
 .vc,
-.hvc {
+.hvc,
+.stack-hvc {
   display: flex;
 }
 
 .stack,
-.stack-sb {
+.stack-sb,
+.stack-hvc {
   flex-direction: column;
 }
 
-.hvc {
+.hvc,
+.stack-hvc {
   justify-content: center;
 }
 
@@ -34,6 +37,7 @@
 
 .vc,
 .vcsb,
-.hvc {
+.hvc,
+.stack-hvc {
   align-items: center;
 }

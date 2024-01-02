@@ -43,7 +43,7 @@ const PlanOptions: PlanOptionProps[] = [
 
 const PlanSelection = () => {
   return (
-    <form className="stack">
+    <form className="form stack">
       <FormDesc
         header="Select your plan"
         description="You have the option of monthly or yearly billing."

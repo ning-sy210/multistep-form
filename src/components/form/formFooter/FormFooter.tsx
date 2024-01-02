@@ -1,11 +1,12 @@
-import { useAtom } from "jotai";
-import { stepAtom } from "../Form.atoms";
+import { useAtom, useSetAtom } from "jotai";
 
+import { hasCompletedAtom, stepAtom } from "../Form.atoms";
 import { steps } from "../Form.constants";
 import "./FormFooter.scss";
 
 const FormFooter = () => {
   const [step, setStep] = useAtom(stepAtom);
+  const setHasCompleted = useSetAtom(hasCompletedAtom);
   const lastStep = steps.length - 1;
 
   return (
@@ -31,7 +32,11 @@ const FormFooter = () => {
       )}
 
       {step === lastStep && (
-        <button type="button" className="confirm-btn">
+        <button
+          onClick={() => setHasCompleted(true)}
+          type="button"
+          className="confirm-btn"
+        >
           Confirm
         </button>
       )}
