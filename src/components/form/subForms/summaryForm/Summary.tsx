@@ -3,35 +3,34 @@ import { AddOnCoreProps } from "../addOnForm/AddOns";
 import FormDesc from "../formDesc/FormDesc";
 
 import { stepAtom } from "../../Form.atoms";
+import { getItemCost, getPerMonthOrYearText } from "../../Form.functions";
 import { selectedAddOnsReadAtom } from "../addOnForm/AddOns.atoms";
 import {
-  selectedPlanCostReadAtom,
   paymentBasisAtom,
   selectedPlanAtom,
+  selectedPlanCostReadAtom,
 } from "../planSelectionForm/PlanSelection.atoms";
-import { PaymentBasis } from "../planSelectionForm/PlanSelection.constants";
 
 import "./Summary.scss";
 
 const Summary = () => {
   const setStep = useSetAtom(stepAtom);
 
-  const paymentPlan = useAtomValue(paymentBasisAtom);
+  const paymentBasis = useAtomValue(paymentBasisAtom);
   const selectedPlan = useAtomValue(selectedPlanAtom);
   const selectedAddOns = useAtomValue(selectedAddOnsReadAtom);
 
   const planCost = useAtomValue(selectedPlanCostReadAtom);
-  const addOnsCost = selectedAddOns.reduce((acc, curr) => {
-    return paymentPlan === PaymentBasis.MONTHLY
-      ? acc + curr.costPerMonth
-      : acc + curr.costPerMonth * (12 - (curr.freeMonthsInYearPlan ?? 0));
-  }, 0);
+  const addOnsCost = selectedAddOns.reduce(
+    (acc, curr) =>
+      acc +
+      getItemCost(curr.costPerMonth, paymentBasis, curr.freeMonthsInYearPlan),
+    0
+  );
   const totalCost = planCost + addOnsCost;
 
-  const perMonthOrYearTextTruncated =
-    paymentPlan === PaymentBasis.MONTHLY ? "/mo" : "/yr";
-  const perMonthOrYearText =
-    paymentPlan === PaymentBasis.MONTHLY ? "per month" : "per year";
+  const perMonthOrYearText = getPerMonthOrYearText(paymentBasis, false);
+  const perMonthOrYearTextTruncated = getPerMonthOrYearText(paymentBasis);
 
   return (
     <section className="form summary-form">
@@ -45,10 +44,10 @@ const Summary = () => {
           <div className="vcsb">
             <div>
               <p className="selected-plan">
-                {selectedPlan?.label} ({paymentPlan})
+                {selectedPlan?.label} ({paymentBasis})
               </p>
               <button
-                onClick={() => setStep(1)}
+                onClick={() => setStep(2)}
                 type="button"
                 className="change-btn"
               >
@@ -90,17 +89,15 @@ const AddOn = ({
   costPerMonth,
   freeMonthsInYearPlan = 0,
 }: AddOnCoreProps) => {
-  const paymentPlan = useAtomValue(paymentBasisAtom);
-
-  const cost =
-    paymentPlan === PaymentBasis.MONTHLY
-      ? `${costPerMonth}/mo`
-      : `${costPerMonth * (12 - freeMonthsInYearPlan)}/yr`;
+  const paymentBasis = useAtomValue(paymentBasisAtom);
 
   return (
     <div className="sb add-on">
       <p>{label}</p>
-      <p className="add-on-cost">+${cost}</p>
+      <p className="add-on-cost">
+        +${getItemCost(costPerMonth, paymentBasis, freeMonthsInYearPlan)}
+        {getPerMonthOrYearText(paymentBasis)}
+      </p>
     </div>
   );
 };
