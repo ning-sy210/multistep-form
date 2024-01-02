@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 
 import FormDesc from "../formDesc/FormDesc";
 import { paymentPlanAtom, selectedPlanAtom } from "./PlanSelection.atoms";
@@ -72,7 +72,7 @@ const PlanOption = ({
   costPerMonth,
   freeMonthsInYearPlan = 0,
 }: PlanOptionProps) => {
-  const [paymentPlan] = useAtom(paymentPlanAtom);
+  const paymentPlan = useAtomValue(paymentPlanAtom);
   const [selectedPlan, setSelectedPlan] = useAtom(selectedPlanAtom); // TODO: form validation for empty selection
   const selectedClass = selectedPlan?.label === label ? "selected" : "";
 

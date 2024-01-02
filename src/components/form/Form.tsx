@@ -1,4 +1,4 @@
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 
 import FormFooter from "./formFooter/FormFooter";
 import StepDisplay from "./stepDisplay/StepDisplay";
@@ -10,7 +10,7 @@ import { steps } from "./Form.constants";
 import "./Form.scss";
 
 const Form = () => {
-  const [step] = useAtom(stepAtom);
+  const step = useAtomValue(stepAtom);
   const hasCompleted = useAtomValue(hasCompletedAtom);
 
   return (

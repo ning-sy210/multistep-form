@@ -1,6 +1,6 @@
 import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { PrimitiveAtom, useAtom } from "jotai";
+import { PrimitiveAtom, useAtom, useAtomValue } from "jotai";
 
 import FormDesc from "../formDesc/FormDesc";
 
@@ -51,7 +51,7 @@ const AddOnOption = ({
   atom,
 }: AddOnOptionProps) => {
   const [selected, setSelected] = useAtom(atom);
-  const [paymentPlan] = useAtom(paymentPlanAtom);
+  const paymentPlan = useAtomValue(paymentPlanAtom);
 
   const costLabel =
     paymentPlan === PaymentPlan.MONTHLY
