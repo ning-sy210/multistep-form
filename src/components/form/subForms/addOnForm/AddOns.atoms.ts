@@ -2,7 +2,6 @@ import { atom } from "jotai";
 import { AddOnCoreProps } from "./AddOns";
 import { AddOn, addOnOptions } from "./AddOns.constants";
 
-// TODO: use atomWithToggle instead of atom
 export const onlineServiceAtom = atom(false);
 export const largerStorageAtom = atom(false);
 export const customizableProfileAtom = atom(false);
@@ -23,7 +22,7 @@ export const selectedAddOnsReadAtom = atom<AddOnCoreProps[]>((get) => {
         const addOn = {
           label: option.label,
           costPerMonth: option.costPerMonth,
-          freeMonthsInYearPlan: option.freeMonthsInYearPlan ?? 0,
+          freeMonthsInYearPlan: option.freeMonthsInYearPlan,
         };
         addOns.push(addOn);
       }

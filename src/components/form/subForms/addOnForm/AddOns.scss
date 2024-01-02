@@ -4,7 +4,8 @@
   padding: 13px 15px;
 
   &:has(.selected) {
-    border-color: var(--color-primary-purplish-blue);
+    border-color: var(--color-primary-marine-blue);
+    background-color: hsl(from var(--color-primary-purplish-blue) h s l / 0.05);
   }
 
   &:not(:last-of-type) {
@@ -61,7 +62,7 @@
     letter-spacing: -0.017rem;
   }
 
-  .cost-label {
+  .add-on-cost {
     margin-left: auto;
     font-size: 0.76875rem;
     color: var(--color-primary-purplish-blue);

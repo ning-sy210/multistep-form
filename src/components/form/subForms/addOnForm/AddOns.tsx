@@ -1,11 +1,8 @@
-import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PrimitiveAtom, useAtom, useAtomValue } from "jotai";
-
 import FormDesc from "../formDesc/FormDesc";
 
+import { getItemCost, getPerMonthOrYearText } from "../../Form.functions";
 import { paymentBasisAtom } from "../planSelectionForm/PlanSelection.atoms";
-import { PaymentBasis } from "../planSelectionForm/PlanSelection.constants";
 import { AddOn, addOnOptions } from "./AddOns.constants";
 
 import "./AddOns.scss";
@@ -51,19 +48,32 @@ const AddOnOption = ({
   atom,
 }: AddOnOptionProps) => {
   const [selected, setSelected] = useAtom(atom);
-  const paymentPlan = useAtomValue(paymentBasisAtom);
+  const paymentBasis = useAtomValue(paymentBasisAtom);
 
-  const costLabel =
-    paymentPlan === PaymentBasis.MONTHLY
-      ? `${costPerMonth}/mo`
-      : `${costPerMonth * (12 - freeMonthsInYearPlan)}/yr`;
+  const addOnCost = `+$${getItemCost(
+    costPerMonth,
+    paymentBasis,
+    freeMonthsInYearPlan
+  )}${getPerMonthOrYearText(paymentBasis)}`;
 
   return (
     <section onClick={() => setSelected((prev) => !prev)} className="vc add-on">
       <div className={`custom-checkbox-ctn ${selected ? "selected" : ""}`}>
         <input type="checkbox" />
         <div className="hvc custom-checkbox">
-          <FontAwesomeIcon icon={faCheck} size="xs" style={{ color: "#fff" }} />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="9"
+            viewBox="0 0 12 9"
+          >
+            <path
+              fill="none"
+              stroke="#FFF"
+              strokeWidth={2}
+              d="m1 4 3.433 3.433L10.866 1"
+            />
+          </svg>
         </div>
       </div>
 
@@ -71,7 +81,7 @@ const AddOnOption = ({
         <h2>{label}</h2>
         <p className="desc">{desc}</p>
       </div>
-      <p className="cost-label">+${costLabel}</p>
+      <p className="add-on-cost">{addOnCost}</p>
     </section>
   );
 };
