@@ -15,19 +15,19 @@ const PersonalInfoFormInputs: PersonalInfoFormInputProps[] = [
   {
     type: "text",
     label: "Name",
-    placeholder: "Stephen King",
+    placeholder: "e.g. Stephen King",
     atom: nameAtom,
   },
   {
     type: "email",
     label: "Email Address",
-    placeholder: "stephenking@lorem.com",
+    placeholder: "e.g. stephenking@lorem.com",
     atom: emailAtom,
   },
   {
     type: "tel",
     label: "Phone Number",
-    placeholder: "+1 234 567 890",
+    placeholder: "e.g. +1 234 567 890",
     atom: phoneNumberAtom,
   },
 ];
@@ -69,7 +69,7 @@ const PersonalInfoFormInput = ({
         onChange={(e) => setValue(e.target.value)}
         name={label}
         type={type}
-        placeholder={`e.g. ${placeholder}`}
+        placeholder={placeholder}
       />
     </div>
   );
