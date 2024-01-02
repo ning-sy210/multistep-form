@@ -1,36 +1,11 @@
 import { PrimitiveAtom, useAtom } from "jotai";
 import FormDesc from "../formDesc/FormDesc";
-import { emailAtom, nameAtom, phoneNumberAtom } from "./PersonalInfo.atoms";
+
+import { TextInput } from "./PersonalInfo.atoms";
+import { PersonalInfoFormInputs } from "./PersonalInfo.constants";
+import { getErrorMessage } from "./PersonalInfo.functions";
 
 import "./PersonalInfo.scss";
-
-type PersonalInfoFormInputProps = {
-  type: React.HTMLInputTypeAttribute;
-  label: string;
-  placeholder?: string;
-  atom: PrimitiveAtom<string>;
-};
-
-const PersonalInfoFormInputs: PersonalInfoFormInputProps[] = [
-  {
-    type: "text",
-    label: "Name",
-    placeholder: "e.g. Stephen King",
-    atom: nameAtom,
-  },
-  {
-    type: "email",
-    label: "Email Address",
-    placeholder: "e.g. stephenking@lorem.com",
-    atom: emailAtom,
-  },
-  {
-    type: "tel",
-    label: "Phone Number",
-    placeholder: "e.g. +1 234 567 890",
-    atom: phoneNumberAtom,
-  },
-];
 
 const PersonalInfo = () => {
   return (
@@ -53,23 +28,51 @@ const PersonalInfo = () => {
   );
 };
 
+export type PersonalInfoFormInputProps = {
+  type: React.HTMLInputTypeAttribute;
+  label: string;
+  placeholder?: string;
+  atom: PrimitiveAtom<TextInput>;
+};
+
 const PersonalInfoFormInput = ({
   type,
   label,
   placeholder,
   atom,
 }: PersonalInfoFormInputProps) => {
-  const [value, setValue] = useAtom(atom);
+  const [field, setField] = useAtom(atom);
+  const inputId = `${label}-input`;
+
+  function onFocus() {
+    if (field.touched) return;
+    setField({ ...field, touched: true });
+  }
+
+  function validateInput() {
+    const error = getErrorMessage(inputId, field);
+    if (!error) return;
+    setField({ ...field, error: error });
+  }
 
   return (
     <div className="grid textbox-input">
-      <label htmlFor={label}>{label}</label>
+      <div className="vcsb label-error-ctn">
+        <label htmlFor={inputId}>{label}</label>
+        {field.error && <p className="error">{field.error}</p>}
+      </div>
       <input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        name={label}
+        required
+        id={inputId}
+        value={field.value}
+        onFocus={onFocus}
+        onChange={(e) =>
+          setField({ value: e.target.value, touched: field.touched })
+        }
+        onBlur={validateInput}
         type={type}
         placeholder={placeholder}
+        className={field.error ? "invalid" : ""}
       />
     </div>
   );

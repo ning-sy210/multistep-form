@@ -4,13 +4,13 @@
   padding: 16px;
   font-size: 0.84375rem;
 
-  & > .back-btn {
+  > .back-btn {
     color: var(--color-neutral-cool-gray);
     font-weight: 500;
   }
 
-  & > .next-btn,
-  & > .confirm-btn {
+  > .next-btn,
+  > .confirm-btn {
     margin-left: auto;
     padding-block: 12px;
     width: 97px;
@@ -21,12 +21,16 @@
     letter-spacing: 0.005rem;
   }
 
-  & > .next-btn {
+  > .next-btn {
     background-color: var(--color-primary-marine-blue);
     color: var(--color-neutral-light-gray);
+
+    &:disabled {
+      background-color: hsl(from var(--color-primary-marine-blue) h s l / 0.5);
+    }
   }
 
-  & > .confirm-btn {
+  > .confirm-btn {
     background-color: var(--color-primary-purplish-blue);
     color: var(--color-neutral-light-gray);
   }

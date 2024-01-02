@@ -5,9 +5,18 @@
     margin-top: 16px;
   }
 
-  > label {
+  .label-error-ctn {
     font-size: 0.76875rem;
-    color: var(--color-primary-marine-blue);
+
+    label {
+      color: var(--color-primary-marine-blue);
+    }
+
+    .error {
+      font-weight: var(--font-bold);
+      color: var(--color-primary-strawberry-red);
+      letter-spacing: -0.02rem;
+    }
   }
 
   > input {
@@ -22,6 +31,10 @@
     &::placeholder {
       color: var(--color-neutral-cool-gray);
       opacity: 0.8;
+    }
+
+    &.invalid {
+      border-color: var(--color-primary-strawberry-red);
     }
   }
 }
