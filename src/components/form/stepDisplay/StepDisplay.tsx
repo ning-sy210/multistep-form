@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { stepAtom } from "../Form.atoms";
 
 import "./StepDisplay.scss";
@@ -8,7 +8,7 @@ type StepDisplayProps = {
 };
 
 const StepDisplay = ({ numberOfSteps }: StepDisplayProps) => {
-  const [step, setStep] = useAtom(stepAtom);
+  const step = useAtomValue(stepAtom);
 
   return (
     <div className="flex step-display">
@@ -17,7 +17,6 @@ const StepDisplay = ({ numberOfSteps }: StepDisplayProps) => {
         return (
           <div
             key={index}
-            onClick={() => setStep(index)}
             className={`hvc step-bubble ${index === step ? "selected" : ""}`}
           >
             {index}
