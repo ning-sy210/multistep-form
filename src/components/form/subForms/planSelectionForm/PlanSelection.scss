@@ -9,7 +9,8 @@
   }
 
   &.selected {
-    border-color: var(--color-primary-purplish-blue);
+    border-color: var(--color-primary-blueish-purple);
+    background-color: hsl(from var(--color-primary-purplish-blue) h s l / 0.03);
   }
 
   > .text-ctn {
