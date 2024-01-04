@@ -6,6 +6,7 @@ import PersonalInfo from "./subForms/personalInfoForm/PersonalInfo";
 import PlanSelection from "./subForms/planSelectionForm/PlanSelection";
 
 import { isPersonalInfoFormValidatedReadAtom } from "./subForms/personalInfoForm/PersonalInfo.atoms";
+import { isPlanSelectionFormValidatedReadAtom } from "./subForms/planSelectionForm/PlanSelection.atoms";
 
 type Step = {
   component: JSX.Element;
@@ -19,7 +20,7 @@ export const steps: Step[] = [
   },
   {
     component: <PlanSelection />,
-    validationAtom: atom(true),
+    validationAtom: isPlanSelectionFormValidatedReadAtom,
   },
   {
     component: <AddOns />,

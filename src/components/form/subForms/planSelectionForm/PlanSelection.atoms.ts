@@ -14,3 +14,7 @@ export const selectedPlanCostReadAtom = atom((get) => {
   const freeMonthsInYearPlan = selectedPlan.freeMonthsInYearPlan;
   return getItemCost(costPerMonth, get(paymentBasisAtom), freeMonthsInYearPlan);
 });
+
+export const isPlanSelectionFormValidatedReadAtom = atom(
+  (get) => get(selectedPlanAtom) !== null
+);
