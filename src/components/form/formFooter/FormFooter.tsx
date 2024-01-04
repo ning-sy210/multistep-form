@@ -3,7 +3,10 @@ import { ScaleLoader } from "react-spinners";
 
 import { hasCompletedAtom, stepAtom } from "../Form.atoms";
 import { steps } from "../Form.constants";
-import { pendingFormSubmissionAtom } from "./FormFooter.atoms";
+import {
+  completedFormAtom,
+  pendingFormSubmissionAtom,
+} from "./FormFooter.atoms";
 
 import "./FormFooter.scss";
 
@@ -12,6 +15,7 @@ const FormFooter = () => {
   const currFormIsValidated = useAtomValue(steps[step - 1].validationAtom);
   const [loading, setLoading] = useAtom(pendingFormSubmissionAtom);
   const setHasCompletedEntireForm = useSetAtom(hasCompletedAtom);
+  const submittedForm = useAtomValue(completedFormAtom);
 
   const lastStep = steps.length;
 
@@ -20,6 +24,7 @@ const FormFooter = () => {
     setTimeout(() => {
       setHasCompletedEntireForm(true);
       setLoading(false);
+      console.log("Form Data:", submittedForm);
     }, 3000);
   }
 
