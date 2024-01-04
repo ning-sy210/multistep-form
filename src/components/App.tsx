@@ -1,6 +1,8 @@
 import Form from "./form/Form";
 import DesktopSidebarImg from "/images/bg-sidebar-mobile.svg";
 
+import "./App.scss";
+
 const App = () => {
   return (
     <>
