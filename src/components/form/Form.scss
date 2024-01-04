@@ -1,0 +1,19 @@
+main {
+  position: absolute;
+  inset: 0;
+
+  > .form {
+    margin-inline: 16px;
+    margin-bottom: 24px;
+    padding: 32px 24px;
+
+    border-radius: 10px;
+    background-color: var(--color-neutral-white);
+
+    box-shadow: 0 16px 20px 0 rgb(0 0 0 / 5%);
+
+    * {
+      animation: fadeIn 0.3s linear;
+    }
+  }
+}

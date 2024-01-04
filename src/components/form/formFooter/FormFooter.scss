@@ -1,0 +1,49 @@
+.form-footer {
+  margin-top: auto;
+  background-color: var(--color-neutral-white);
+  padding: 16px;
+  font-size: 0.84375rem;
+
+  > .back-btn {
+    color: var(--color-neutral-cool-gray);
+    font-weight: 500;
+  }
+
+  > .next-btn,
+  > .confirm-btn {
+    margin-left: auto;
+    padding-block: 12px;
+    width: 97px;
+    border-radius: 4px;
+
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.005rem;
+  }
+
+  > .next-btn {
+    background-color: var(--color-primary-marine-blue);
+    color: var(--color-neutral-light-gray);
+
+    &:disabled {
+      background-color: hsl(from var(--color-primary-marine-blue) h s l / 0.5);
+    }
+  }
+
+  > .confirm-btn {
+    background-color: var(--color-primary-purplish-blue);
+    color: var(--color-neutral-light-gray);
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0 0 0 / 0.6);
+
+  .spinner-ctn {
+    background-color: white;
+    padding: 24px 32px;
+    border-radius: 8px;
+  }
+}

@@ -1,0 +1,40 @@
+.textbox-input {
+  row-gap: 4px;
+
+  &:not(:first-of-type) {
+    margin-top: 16px;
+  }
+
+  .label-error-ctn {
+    font-size: 0.76875rem;
+
+    label {
+      color: var(--color-primary-marine-blue);
+    }
+
+    .error {
+      font-weight: var(--font-bold);
+      color: var(--color-primary-strawberry-red);
+      letter-spacing: -0.02rem;
+    }
+  }
+
+  > input {
+    border: 1px solid var(--color-neutral-light-gray);
+    border-radius: 4px;
+    padding: 11px 16px;
+
+    font-size: 0.875rem;
+    font-weight: var(--font-bold);
+    letter-spacing: 0.01rem;
+
+    &::placeholder {
+      color: var(--color-neutral-cool-gray);
+      opacity: 0.8;
+    }
+
+    &.invalid {
+      border-color: var(--color-primary-strawberry-red);
+    }
+  }
+}

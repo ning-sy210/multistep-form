@@ -1,0 +1,43 @@
+.grid {
+  display: grid;
+}
+
+.flex,
+.flex-align-start,
+.stack,
+.stack-sb,
+.sb,
+.vcsb,
+.vc,
+.hvc,
+.stack-hvc {
+  display: flex;
+}
+
+.stack,
+.stack-sb,
+.stack-hvc {
+  flex-direction: column;
+}
+
+.hvc,
+.stack-hvc {
+  justify-content: center;
+}
+
+.sb,
+.vcsb,
+.stack-sb {
+  justify-content: space-between;
+}
+
+.flex-align-start {
+  align-items: start;
+}
+
+.vc,
+.vcsb,
+.hvc,
+.stack-hvc {
+  align-items: center;
+}

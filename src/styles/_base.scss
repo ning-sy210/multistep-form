@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  // primary colors
+  --color-primary-marine-blue: hsl(213, 96%, 18%);
+  --color-primary-purplish-blue: hsl(243, 100%, 62%);
+  --color-primary-pastel-blue: hsl(228, 100%, 84%);
+  --color-primary-light-blue: hsl(206, 94%, 87%);
+  --color-primary-strawberry-red: hsl(354, 84%, 57%);
+  --color-primary-blueish-purple: hsl(259, 67%, 41%);
+
+  // neutral colors
+  --color-neutral-cool-gray: hsl(231, 11%, 63%);
+  --color-neutral-light-gray: hsl(229, 24%, 87%);
+  --color-neutral-magnolia: hsl(217, 100%, 97%);
+  --color-neutral-alabaster: hsl(231, 100%, 99%);
+  --color-neutral-white: hsl(0, 0%, 100%);
+
+  // font-weights
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+}
+
+#root {
+  font-family: "Ubuntu", sans-serif;
+  position: relative;
+  min-height: 100dvh; // TODO: use js to set height according to height of absolutely positioned <form> child elements
+  background-color: var(--color-neutral-magnolia);
+}
+
+button {
+  all: unset;
+  outline: revert;
+  box-sizing: revert;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: unset;
+}
