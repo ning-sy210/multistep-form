@@ -35,3 +35,15 @@
     color: var(--color-neutral-light-gray);
   }
 }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0 0 0 / 0.6);
+
+  .spinner-ctn {
+    background-color: white;
+    padding: 24px 32px;
+    border-radius: 8px;
+  }
+}
