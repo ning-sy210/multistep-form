@@ -1,6 +1,6 @@
 main {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1 / -1 / -1;
+  z-index: 1;
 
   > .form {
     margin-inline: 16px;
