@@ -30,8 +30,8 @@
 
 #root {
   font-family: "Ubuntu", sans-serif;
-  position: relative;
-  min-height: 100dvh; // TODO: use js to set height according to height of absolutely positioned <form> child elements
+  display: grid;
+  min-height: 100dvh;
   background-color: var(--color-neutral-magnolia);
 }
 

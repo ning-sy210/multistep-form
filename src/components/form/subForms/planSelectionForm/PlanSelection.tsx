@@ -77,7 +77,7 @@ const PlanOption = ({
   freeMonthsInYearPlan = 0,
 }: PlanOptionProps) => {
   const paymentBasis = useAtomValue(paymentBasisAtom);
-  const [selectedPlan, setSelectedPlan] = useAtom(selectedPlanAtom); // TODO: form validation for empty selection
+  const [selectedPlan, setSelectedPlan] = useAtom(selectedPlanAtom);
   const planCost = getItemCost(
     costPerMonth,
     paymentBasis,
