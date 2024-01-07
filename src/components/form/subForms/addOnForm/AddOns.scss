@@ -68,3 +68,32 @@
     color: var(--color-primary-purplish-blue);
   }
 }
+
+@media (min-width: 768px) {
+  .add-on-form > .add-on {
+    padding: 20px 24px;
+    width: 450px;
+
+    &:not(:last-of-type) {
+      margin-bottom: 16px;
+    }
+
+    .custom-checkbox-ctn {
+      margin-right: 24px;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .desc {
+      font-size: 14px;
+      letter-spacing: 0rem;
+    }
+
+    .add-on-cost {
+      font-size: 14px;
+    }
+  }
+}
