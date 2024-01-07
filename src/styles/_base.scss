@@ -28,13 +28,6 @@
   --font-bold: 700;
 }
 
-#root {
-  font-family: "Ubuntu", sans-serif;
-  display: grid;
-  min-height: 100dvh;
-  background-color: var(--color-neutral-magnolia);
-}
-
 button {
   all: unset;
   outline: revert;
