@@ -26,7 +26,9 @@
     color: var(--color-neutral-light-gray);
 
     &:disabled {
-      background-color: hsl(from var(--color-primary-marine-blue) h s l / 0.5);
+      background-color: hsl(
+        from var(--color-primary-marine-blue) h s l / 0.5
+      ) !important;
     }
   }
 
