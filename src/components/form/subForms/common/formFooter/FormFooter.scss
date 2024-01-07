@@ -57,6 +57,10 @@
     padding-inline: 0;
     margin-inline: auto;
 
+    > .back-btn {
+      font-size: 1rem;
+    }
+
     > .next-btn,
     > .confirm-btn {
       font-size: 16px;

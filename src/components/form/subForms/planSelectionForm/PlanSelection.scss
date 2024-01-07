@@ -43,13 +43,14 @@
 
   font-size: 0.875rem;
   font-weight: var(--font-medium);
+  color: var(--color-neutral-cool-gray);
 
-  > .month-option-label {
-    color: var(--color-primary-marine-blue);
-  }
+  > .plan-option-label {
+    transition: color 0.2s ease;
 
-  > .year-option-label {
-    color: var(--color-neutral-cool-gray);
+    &.selected {
+      color: var(--color-primary-marine-blue);
+    }
   }
 }
 
@@ -76,5 +77,31 @@
     &.yearly {
       transform: translateX(calc($width - 2 * $padding - $diameter));
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .plan-options-ctn {
+    position: relative;
+    left: 2px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 18px;
+
+    .plan-option {
+      display: flex;
+      flex-direction: column;
+      row-gap: 42px;
+      width: 138px;
+      padding: 20px 14px 16px;
+
+      &:not(:last-of-type) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .payment-basis-selector {
+    margin-top: 32px;
   }
 }

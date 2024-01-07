@@ -49,6 +49,12 @@ const PlanOptions: PlanOptionProps[] = [
 ];
 
 const PlanSelection = () => {
+  const paymentBasis = useAtomValue(paymentBasisAtom);
+  const monthlyPlanLabelClass =
+    paymentBasis === PaymentBasis.MONTHLY ? "selected" : "";
+  const yearlyPlanLabelClass =
+    paymentBasis === PaymentBasis.YEARLY ? "selected" : "";
+
   return (
     <>
       <form className="form stack">
@@ -57,20 +63,24 @@ const PlanSelection = () => {
           description="You have the option of monthly or yearly billing."
         />
 
-        {PlanOptions.map((option) => (
-          <PlanOption
-            key={option.label}
-            icon={option.icon}
-            label={option.label}
-            costPerMonth={option.costPerMonth}
-            freeMonthsInYearPlan={option.freeMonthsInYearPlan}
-          />
-        ))}
+        <div className="plan-options-ctn">
+          {PlanOptions.map((option) => (
+            <PlanOption
+              key={option.label}
+              icon={option.icon}
+              label={option.label}
+              costPerMonth={option.costPerMonth}
+              freeMonthsInYearPlan={option.freeMonthsInYearPlan}
+            />
+          ))}
+        </div>
 
         <div className="hvc payment-basis-selector">
-          <p className="month-option-label">Monthly</p>
+          <p className={`plan-option-label ${monthlyPlanLabelClass}`}>
+            Monthly
+          </p>
           <PlanToggle />
-          <p className="year-option-label">Yearly</p>
+          <p className={`plan-option-label ${yearlyPlanLabelClass}`}>Yearly</p>
         </div>
       </form>
 
