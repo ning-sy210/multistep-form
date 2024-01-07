@@ -1,6 +1,24 @@
 #root {
+  font-family: "Ubuntu", sans-serif;
+  display: grid;
+  min-height: 100dvh;
+  background-color: var(--color-neutral-magnolia);
+
+  > * {
+    grid-area: 1 / 1 / -1 / -1;
+  }
+
   > img {
     width: 100%;
-    grid-area: 1 / 1 / -1 / -1;
+  }
+}
+
+@media (min-width: 768px) {
+  #root {
+    place-items: center;
+
+    > img {
+      display: none;
+    }
   }
 }

@@ -9,6 +9,7 @@
 .sb,
 .vcsb,
 .vc,
+.hc,
 .hvc,
 .stack-hvc {
   display: flex;
@@ -20,6 +21,7 @@
   flex-direction: column;
 }
 
+.hc,
 .hvc,
 .stack-hvc {
   justify-content: center;

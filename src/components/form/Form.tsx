@@ -14,8 +14,13 @@ const Form = () => {
 
   return (
     <main className="stack">
-      <StepDisplay numberOfSteps={steps.length} />
-      {hasCompleted ? <SubscriptionConfirmation /> : steps[step - 1]}
+      <StepDisplay />
+
+      {hasCompleted ? (
+        <SubscriptionConfirmation />
+      ) : (
+        <div className="stack page">{steps[step - 1].component}</div>
+      )}
     </main>
   );
 };
