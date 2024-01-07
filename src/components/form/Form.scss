@@ -1,34 +1,44 @@
 main {
   z-index: 1;
+}
 
-  > .page {
-    flex-grow: 1;
+.page {
+  flex-grow: 1;
+}
 
-    > .form {
-      margin-inline: 16px;
-      margin-bottom: 24px;
-      padding: 32px 24px;
+.form {
+  margin-inline: 16px;
+  margin-bottom: 24px;
+  padding: 32px 24px;
 
-      border-radius: 10px;
-      background-color: var(--color-neutral-white);
+  border-radius: 10px;
+  background-color: var(--color-neutral-white);
 
-      box-shadow: 0 16px 20px 0 rgb(0 0 0 / 5%);
+  box-shadow: 0 16px 20px 0 rgb(0 0 0 / 5%);
 
-      * {
-        animation: fadeIn 0.3s linear;
-      }
-    }
+  * {
+    animation: fadeIn 0.3s linear;
   }
 }
 
 @media (min-width: 768px) {
   main {
-    min-width: 940px; // TODO: remove
+    width: min(100%, 940px);
 
     border-radius: 16px;
     padding: 16px;
     background-color: var(--color-neutral-white);
     flex-direction: row !important;
     box-shadow: 0 16px 20px 0 rgb(0 0 0 / 5%);
+
+    .form {
+      position: relative;
+      left: 4px;
+
+      margin: 40px auto 16px;
+      padding: 0;
+      background-color: transparent;
+      box-shadow: none;
+    }
   }
 }

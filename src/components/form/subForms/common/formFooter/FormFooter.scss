@@ -47,3 +47,22 @@
     border-radius: 8px;
   }
 }
+
+@media (min-width: 768px) {
+  .form-footer {
+    position: relative;
+    left: 4px;
+
+    width: min(100%, 442px);
+    padding-inline: 0;
+    margin-inline: auto;
+
+    > .next-btn,
+    > .confirm-btn {
+      font-size: 16px;
+      padding-block: 15px;
+      width: 123px;
+      border-radius: 8px;
+    }
+  }
+}

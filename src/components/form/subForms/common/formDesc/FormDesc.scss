@@ -10,3 +10,13 @@
   color: var(--color-neutral-cool-gray);
   line-height: 1.55rem;
 }
+
+@media (min-width: 768px) {
+  .form-header {
+    font-size: 2rem;
+  }
+
+  .form-desc {
+    margin-bottom: 36px;
+  }
+}
