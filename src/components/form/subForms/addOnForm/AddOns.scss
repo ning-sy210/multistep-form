@@ -73,6 +73,11 @@
   .add-on-form > .add-on {
     padding: 20px 24px;
     width: 450px;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--color-primary-blueish-purple);
+    }
 
     &:not(:last-of-type) {
       margin-bottom: 16px;

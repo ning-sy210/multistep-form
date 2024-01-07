@@ -68,6 +68,13 @@
         font-size: 1rem;
       }
 
+      .change-btn {
+        cursor: pointer;
+        &:hover {
+          color: var(--color-primary-blueish-purple);
+        }
+      }
+
       .divider {
         margin-block: 25px 18px;
       }

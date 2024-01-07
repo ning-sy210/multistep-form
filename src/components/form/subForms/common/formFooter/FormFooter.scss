@@ -59,6 +59,21 @@
 
     > .back-btn {
       font-size: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-primary-marine-blue);
+      }
+    }
+
+    > .next-btn:hover {
+      background-color: hsl(from var(--color-primary-marine-blue) h s l / 0.8);
+    }
+
+    > .confirm-btn:hover {
+      background-color: hsl(
+        from var(--color-primary-purplish-blue) h s l / 0.8
+      );
     }
 
     > .next-btn,
@@ -67,6 +82,11 @@
       padding-block: 15px;
       width: 123px;
       border-radius: 8px;
+      cursor: pointer;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
     }
   }
 }

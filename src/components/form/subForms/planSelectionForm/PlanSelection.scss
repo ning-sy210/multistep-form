@@ -94,6 +94,11 @@
       row-gap: 42px;
       width: 138px;
       padding: 20px 14px 16px;
+      cursor: pointer;
+
+      &:hover {
+        border-color: var(--color-primary-blueish-purple);
+      }
 
       &:not(:last-of-type) {
         margin-bottom: 0;
@@ -103,5 +108,9 @@
 
   .payment-basis-selector {
     margin-top: 32px;
+  }
+
+  .payment-basis-toggle {
+    cursor: pointer;
   }
 }
