@@ -1,21 +1,29 @@
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { Atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { ScaleLoader } from "react-spinners";
 
-import { hasCompletedAtom, stepAtom } from "../Form.atoms";
-import { steps } from "../Form.constants";
+import { hasCompletedEntireFormAtom, stepAtom } from "../../../Form.atoms";
+import { steps } from "../../../Form.constants";
 import {
-  completedFormAtom,
+  defaultFormValidationAtom,
+  formDataAtom,
   pendingFormSubmissionAtom,
 } from "./FormFooter.atoms";
 
 import "./FormFooter.scss";
 
-const FormFooter = () => {
+type FormFooterProps = {
+  formValidationAtom?: Atom<boolean>;
+};
+
+const FormFooter = ({
+  formValidationAtom = defaultFormValidationAtom,
+}: FormFooterProps) => {
   const [step, setStep] = useAtom(stepAtom);
-  const currFormIsValidated = useAtomValue(steps[step - 1].validationAtom);
+  const cannotProceedToNextStep = !useAtomValue(formValidationAtom);
+
   const [loading, setLoading] = useAtom(pendingFormSubmissionAtom);
-  const setHasCompletedEntireForm = useSetAtom(hasCompletedAtom);
-  const submittedForm = useAtomValue(completedFormAtom);
+  const setHasCompletedEntireForm = useSetAtom(hasCompletedEntireFormAtom);
+  const formData = useAtomValue(formDataAtom);
 
   const lastStep = steps.length;
 
@@ -24,7 +32,7 @@ const FormFooter = () => {
     setTimeout(() => {
       setHasCompletedEntireForm(true);
       setLoading(false);
-      console.log("Form Data:", submittedForm);
+      console.log("Form Data:", formData);
     }, 3000);
   }
 
@@ -44,7 +52,7 @@ const FormFooter = () => {
         {step < lastStep && (
           <button
             onClick={() => setStep((prev) => prev + 1)}
-            disabled={!currFormIsValidated}
+            disabled={cannotProceedToNextStep}
             type="button"
             className="next-btn"
           >
@@ -53,7 +61,12 @@ const FormFooter = () => {
         )}
 
         {step === lastStep && (
-          <button onClick={submitForm} type="button" className="confirm-btn">
+          <button
+            onClick={submitForm}
+            disabled={cannotProceedToNextStep}
+            type="button"
+            className="confirm-btn"
+          >
             Confirm
           </button>
         )}

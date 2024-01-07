@@ -1,9 +1,11 @@
 import { PrimitiveAtom, useAtom, useAtomValue } from "jotai";
-import FormDesc from "../formDesc/FormDesc";
 
-import { getItemCost, getPerMonthOrYearText } from "../../Form.functions";
+import { getItemCost, getPerMonthOrYearText } from "../../../../util/functions";
 import { paymentBasisAtom } from "../planSelectionForm/PlanSelection.atoms";
 import { AddOn, addOnOptions } from "./AddOns.constants";
+
+import FormDesc from "../common/formDesc/FormDesc";
+import FormFooter from "../common/formFooter/FormFooter";
 
 import "./AddOns.scss";
 
@@ -20,23 +22,27 @@ export type AddOnOptionProps = AddOnCoreProps & {
 
 const AddOns = () => {
   return (
-    <form className="form add-on-form">
-      <FormDesc
-        header="Pick add-ons"
-        description="Add-ons help enhance your gaming experience."
-      />
-
-      {addOnOptions.map((addOn) => (
-        <AddOnOption
-          key={addOn.label}
-          label={addOn.label}
-          desc={addOn.desc}
-          costPerMonth={addOn.costPerMonth}
-          freeMonthsInYearPlan={addOn.freeMonthsInYearPlan}
-          atom={addOn.atom}
+    <>
+      <form className="form add-on-form">
+        <FormDesc
+          header="Pick add-ons"
+          description="Add-ons help enhance your gaming experience."
         />
-      ))}
-    </form>
+
+        {addOnOptions.map((addOn) => (
+          <AddOnOption
+            key={addOn.label}
+            label={addOn.label}
+            desc={addOn.desc}
+            costPerMonth={addOn.costPerMonth}
+            freeMonthsInYearPlan={addOn.freeMonthsInYearPlan}
+            atom={addOn.atom}
+          />
+        ))}
+      </form>
+
+      <FormFooter />
+    </>
   );
 };
 

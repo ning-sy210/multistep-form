@@ -1,30 +1,39 @@
 import { PrimitiveAtom, useAtom } from "jotai";
-import FormDesc from "../formDesc/FormDesc";
 
-import { TextInput } from "./PersonalInfo.atoms";
+import {
+  TextInput,
+  isPersonalInfoFormValidatedReadAtom,
+} from "./PersonalInfo.atoms";
 import { PersonalInfoFormInputs } from "./PersonalInfo.constants";
 import { getErrorMessage } from "./PersonalInfo.functions";
+
+import FormDesc from "../common/formDesc/FormDesc";
+import FormFooter from "../common/formFooter/FormFooter";
 
 import "./PersonalInfo.scss";
 
 const PersonalInfo = () => {
   return (
-    <form className="form">
-      <FormDesc
-        header="Personal info"
-        description="Please provide your name, email address, and phone number."
-      />
-
-      {PersonalInfoFormInputs.map((input) => (
-        <PersonalInfoFormInput
-          key={input.label}
-          type={input.type}
-          label={input.label}
-          placeholder={input.placeholder}
-          atom={input.atom}
+    <>
+      <form className="form">
+        <FormDesc
+          header="Personal info"
+          description="Please provide your name, email address, and phone number."
         />
-      ))}
-    </form>
+
+        {PersonalInfoFormInputs.map((input) => (
+          <PersonalInfoFormInput
+            key={input.label}
+            type={input.type}
+            label={input.label}
+            placeholder={input.placeholder}
+            atom={input.atom}
+          />
+        ))}
+      </form>
+
+      <FormFooter formValidationAtom={isPersonalInfoFormValidatedReadAtom} />
+    </>
   );
 };
 
@@ -44,11 +53,6 @@ const PersonalInfoFormInput = ({
   const [field, setField] = useAtom(atom);
   const inputId = `${label}-input`;
 
-  function onFocus() {
-    if (field.touched) return;
-    setField({ ...field, touched: true });
-  }
-
   function validateInput() {
     const error = getErrorMessage(inputId, field);
     if (!error) return;
@@ -65,10 +69,7 @@ const PersonalInfoFormInput = ({
         required
         id={inputId}
         value={field.value}
-        onFocus={onFocus}
-        onChange={(e) =>
-          setField({ value: e.target.value, touched: field.touched })
-        }
+        onChange={(e) => setField({ value: e.target.value })}
         onBlur={validateInput}
         type={type}
         placeholder={placeholder}

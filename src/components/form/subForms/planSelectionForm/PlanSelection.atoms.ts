@@ -1,7 +1,9 @@
 import { atom } from "jotai";
+
 import { PlanOptionCoreProps } from "./PlanSelection";
 import { PaymentBasis } from "./PlanSelection.constants";
-import { getItemCost } from "../../Form.functions";
+
+import { getItemCost } from "../../../../util/functions";
 
 export const paymentBasisAtom = atom<PaymentBasis>(PaymentBasis.MONTHLY);
 export const selectedPlanAtom = atom<PlanOptionCoreProps | null>(null);

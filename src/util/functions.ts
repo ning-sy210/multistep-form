@@ -1,4 +1,4 @@
-import { PaymentBasis } from "./subForms/planSelectionForm/PlanSelection.constants";
+import { PaymentBasis } from "../components/form/subForms/planSelectionForm/PlanSelection.constants";
 
 export function getItemCost(
   costPerMonth: number,

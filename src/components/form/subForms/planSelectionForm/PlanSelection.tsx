@@ -1,10 +1,15 @@
 import { useAtom, useAtomValue } from "jotai";
 
-import FormDesc from "../formDesc/FormDesc";
-
-import { getItemCost, getPerMonthOrYearText } from "../../Form.functions";
-import { paymentBasisAtom, selectedPlanAtom } from "./PlanSelection.atoms";
+import { getItemCost, getPerMonthOrYearText } from "../../../../util/functions";
+import {
+  isPlanSelectionFormValidatedReadAtom,
+  paymentBasisAtom,
+  selectedPlanAtom,
+} from "./PlanSelection.atoms";
 import { PaymentBasis } from "./PlanSelection.constants";
+
+import FormDesc from "../common/formDesc/FormDesc";
+import FormFooter from "../common/formFooter/FormFooter";
 
 import AdvancedIcon from "/images/icon-advanced.svg";
 import ArcadeIcon from "/images/icon-arcade.svg";
@@ -45,28 +50,32 @@ const PlanOptions: PlanOptionProps[] = [
 
 const PlanSelection = () => {
   return (
-    <form className="form stack">
-      <FormDesc
-        header="Select your plan"
-        description="You have the option of monthly or yearly billing."
-      />
-
-      {PlanOptions.map((option) => (
-        <PlanOption
-          key={option.label}
-          icon={option.icon}
-          label={option.label}
-          costPerMonth={option.costPerMonth}
-          freeMonthsInYearPlan={option.freeMonthsInYearPlan}
+    <>
+      <form className="form stack">
+        <FormDesc
+          header="Select your plan"
+          description="You have the option of monthly or yearly billing."
         />
-      ))}
 
-      <div className="hvc payment-basis-selector">
-        <p className="month-option-label">Monthly</p>
-        <PlanToggle />
-        <p className="year-option-label">Yearly</p>
-      </div>
-    </form>
+        {PlanOptions.map((option) => (
+          <PlanOption
+            key={option.label}
+            icon={option.icon}
+            label={option.label}
+            costPerMonth={option.costPerMonth}
+            freeMonthsInYearPlan={option.freeMonthsInYearPlan}
+          />
+        ))}
+
+        <div className="hvc payment-basis-selector">
+          <p className="month-option-label">Monthly</p>
+          <PlanToggle />
+          <p className="year-option-label">Yearly</p>
+        </div>
+      </form>
+
+      <FormFooter formValidationAtom={isPlanSelectionFormValidatedReadAtom} />
+    </>
   );
 };
 
