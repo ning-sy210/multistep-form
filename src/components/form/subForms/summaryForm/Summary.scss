@@ -55,3 +55,35 @@
     margin-bottom: 16px;
   }
 }
+
+@media (min-width: 768px) {
+  .summary-form > .main {
+    width: 450px;
+
+    .cost-breakdown {
+      padding: 24px;
+
+      .selected-plan,
+      .plan-cost {
+        font-size: 1rem;
+      }
+
+      .divider {
+        margin-block: 25px 18px;
+      }
+    }
+
+    .add-on:not(:last-of-type) {
+      margin-bottom: 20px;
+    }
+
+    .total-cost-ctn {
+      margin-top: 28px;
+      padding-inline: 24px;
+
+      .total-cost {
+        font-size: 20px;
+      }
+    }
+  }
+}
